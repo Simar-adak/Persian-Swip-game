@@ -1,0 +1,359 @@
+/* =========================================================
+   Persian Word Swipe — tokens
+   ========================================================= */
+:root {
+  --ink: #1B1330;
+  --ink-deep: #120C22;
+  --teal: #2E9C93;
+  --teal-light: #6FCFC5;
+  --saffron: #E8A63D;
+  --saffron-dim: #C68A2C;
+  --pomegranate: #C1442E;
+  --parchment: #F5ECD9;
+  --parchment-dim: #E4D6B8;
+
+  --font-display-fa: 'Vazirmatn', sans-serif;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--ink-deep);
+  color: var(--parchment);
+  font-family: var(--font-ui);
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* =========================================================
+   Screens
+   ========================================================= */
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* =========================================================
+   Home screen
+   ========================================================= */
+#home-screen {
+  position: relative;
+  padding: 40px 16px;
+}
+
+.tile-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    repeating-conic-gradient(from 45deg, var(--ink) 0deg 90deg, var(--ink-deep) 90deg 180deg);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 72%);
+          mask-image: radial-gradient(circle at center, black, transparent 72%);
+  pointer-events: none;
+}
+
+.ornament {
+  position: relative;
+  z-index: 1;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto 18px;
+}
+
+.ornament::before,
+.ornament::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 2px solid var(--saffron);
+}
+
+.ornament::after {
+  transform: rotate(45deg);
+  border-color: var(--teal-light);
+}
+
+.ornament .dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: var(--pomegranate);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.6rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 6px;
+  color: var(--parchment);
+}
+
+.subtitle {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display-fa);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--teal-light);
+  margin: 0 0 14px;
+}
+
+.tagline {
+  position: relative;
+  z-index: 1;
+  font-size: 0.95rem;
+  color: var(--parchment-dim);
+  max-width: 320px;
+  margin: 0 0 30px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.btn {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 42px;
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--saffron);
+  color: var(--ink-deep);
+  box-shadow: 0 0 0 2px var(--saffron-dim) inset;
+}
+
+.btn-primary:hover {
+  background: #f0b559;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--parchment-dim);
+  border: 1.5px solid var(--parchment-dim);
+  padding: 10px 30px;
+  font-size: 0.95rem;
+  margin-top: 26px;
+}
+
+.btn-secondary:hover {
+  color: var(--parchment);
+  border-color: var(--parchment);
+}
+
+/* =========================================================
+   Game screen
+   ========================================================= */
+.instructions {
+  font-size: 0.95rem;
+  color: var(--parchment-dim);
+  max-width: 320px;
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.wheel {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, var(--ink) 0%, var(--ink-deep) 72%);
+  box-shadow:
+    0 0 0 2px var(--saffron-dim),
+    0 0 0 8px var(--ink-deep),
+    0 0 0 10px var(--teal),
+    0 18px 40px rgba(0,0,0,0.45);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pomegranate);
+  transform: translate(-50%, -50%);
+}
+
+.trace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.trace polyline {
+  fill: none;
+  stroke: var(--saffron);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tile {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--parchment);
+  color: var(--ink);
+  border: 2.5px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display-fa);
+  font-weight: 700;
+  font-size: 1.9rem;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+.tile.selected {
+  background: var(--saffron);
+  border-color: var(--pomegranate);
+  color: var(--ink-deep);
+}
+
+.selection-display {
+  min-height: 1.6rem;
+  margin: 22px 0 4px;
+  font-family: var(--font-display-fa);
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  color: var(--teal-light);
+}
+
+.feedback {
+  min-height: 1.4rem;
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--parchment-dim);
+}
+
+.feedback.correct {
+  color: var(--saffron);
+  font-weight: 600;
+}
+
+/* =========================================================
+   Win overlay
+   ========================================================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 12, 34, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 10;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.win-card {
+  background: var(--parchment);
+  color: var(--ink);
+  border-radius: 20px;
+  padding: 36px 30px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 0 3px var(--saffron), 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.win-word {
+  font-family: var(--font-display-fa);
+  font-weight: 800;
+  font-size: 2.6rem;
+  color: var(--pomegranate);
+  margin: 0 0 4px;
+}
+
+.win-card h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.win-copy {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #3a3050;
+  margin: 0 0 24px;
+}
+
+.win-copy span {
+  font-family: var(--font-display-fa);
+  font-weight: 700;
+}
+
+/* =========================================================
+   Small screens
+   ========================================================= */
+@media (max-width: 360px) {
+  .title { font-size: 2.2rem; }
+  #app { padding: 16px; }
+}

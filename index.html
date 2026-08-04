@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Persian Word Swipe</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- HOME SCREEN -->
+  <section id="home-screen" class="screen active">
+    <div class="tile-pattern" aria-hidden="true"></div>
+    <div class="ornament" aria-hidden="true"></div>
+
+    <h1 class="title">Persian Word Swipe</h1>
+    <p class="subtitle" lang="fa" dir="rtl">یک غذای ایرانی را پیدا کن</p>
+    <p class="tagline">Swipe the letters to uncover a hidden Persian food.</p>
+
+    <button id="play-btn" class="btn btn-primary" type="button">Play</button>
+  </section>
+
+  <!-- GAME SCREEN -->
+  <section id="game-screen" class="screen">
+    <p class="instructions">Drag across the letters, in order, to spell the word.</p>
+
+    <div class="wheel" id="wheel">
+      <svg class="trace" id="trace" viewBox="0 0 300 300">
+        <polyline id="trace-line" points=""></polyline>
+      </svg>
+      <div class="wheel-center" aria-hidden="true"></div>
+      <!-- letter tiles injected by script.js -->
+    </div>
+
+    <p class="selection-display" id="selection-display" aria-live="polite">&nbsp;</p>
+    <p class="feedback" id="feedback" aria-live="polite">&nbsp;</p>
+
+    <button id="restart-btn" class="btn btn-secondary" type="button">Restart</button>
+  </section>
+
+  <!-- WIN OVERLAY -->
+  <div id="win-overlay" class="overlay hidden">
+    <div class="win-card">
+      <p class="win-word" lang="fa" dir="rtl">کباب</p>
+      <h2>You Win!</h2>
+      <p class="win-copy">Correct! <span lang="fa" dir="rtl">کباب</span> means <em>kabab</em>, skewered grilled meat and a staple of Persian cuisine.</p>
+      <button id="play-again-btn" class="btn btn-primary" type="button">Play Again</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
